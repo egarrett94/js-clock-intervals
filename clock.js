@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	var currentHour = timer.getHours();
 
 	var secToDegrees = function(seconds) {
-		secDegrees = (seconds / 360) * 360;
+		secDegrees = (seconds / 60) * 360;
 		return secDegrees;
 	}
 
@@ -32,15 +32,19 @@ document.addEventListener('DOMContentLoaded', function () {
 		return hourDegrees;
 	}
 
-	var myInterval = setInterval(function () {
+	secHand.style.transform = "rotate(" + secToDegrees(currentSec) +  "deg)";
+	minHand.style.transform = "rotate(" + minToDegrees(currentMin) + "deg)";
+	hourHand.style.transform = "rotate(" + hoursToDegrees(currentHour) + "deg)"; 
+
+	var timeInterval = setInterval(function () {
+		timer = new Date;
+		currentSec = timer.getSeconds();
+		currentMin = timer.getMinutes();
+		currentHour = timer.getHours();
 		secHand.style.transform = "rotate(" + secToDegrees(currentSec) +  "deg)";
 		minHand.style.transform = "rotate(" + minToDegrees(currentMin) + "deg)";
 		hourHand.style.transform = "rotate(" + hoursToDegrees(currentHour) + "deg)"; 
 		console.log("TICK");
 	}, 1000);
-
-
-	// minHand.style.transform = "rotate(" + minToDegrees(currentMin) + "deg)";
-	// hourHand.style.transform = "rotate(" + hoursToDegrees(currentHour) + "deg)"; 
 
 });
