@@ -32,18 +32,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		return hourDegrees;
 	}
 
+	var rotator = function() {
 	secHand.style.transform = "rotate(" + secToDegrees(currentSec) +  "deg)";
 	minHand.style.transform = "rotate(" + minToDegrees(currentMin) + "deg)";
 	hourHand.style.transform = "rotate(" + hoursToDegrees(currentHour) + "deg)"; 
+	}	
 
 	var timeInterval = setInterval(function () {
 		timer = new Date;
 		currentSec = timer.getSeconds();
 		currentMin = timer.getMinutes();
 		currentHour = timer.getHours();
-		secHand.style.transform = "rotate(" + secToDegrees(currentSec) +  "deg)";
-		minHand.style.transform = "rotate(" + minToDegrees(currentMin) + "deg)";
-		hourHand.style.transform = "rotate(" + hoursToDegrees(currentHour) + "deg)"; 
+		rotator();
 		console.log("TICK");
 	}, 1000);
 
